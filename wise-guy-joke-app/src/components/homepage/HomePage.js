@@ -43,7 +43,12 @@ class HomePage extends Component {
             </li>
           ))}
         </ul>
-        <button onClick={this.signoutHandler}>Sign Out</button>
+        <button
+          style={{ background: "navy", color: "white" }}
+          onClick={this.signoutHandler}
+        >
+          Sign Out
+        </button>
       </Fragment>
     );
   }

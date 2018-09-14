@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Signup } from "./components/signup/Signup.js";
 import { Signin } from "./components/signin/Signin.js";
 import HomePage from "./components/homepage/HomePage.js";
-import "./App.css";
+import "./css/App.css";
 
 class App extends Component {
   render() {

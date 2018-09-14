@@ -41,6 +41,9 @@ export class Signin extends Component {
           />
           <button type="submit">Sign In</button>
         </form>
+        <p style={{ color: "navy", fontWeight: "bold" }}>
+          New users Sign Up below to see the Killer Jokes.
+        </p>
         <Link to="/signup">
           <button style={{ background: "navy", color: "white" }}>
             Sign Up
