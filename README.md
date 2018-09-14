@@ -18,6 +18,12 @@
 3. What does bcrypt do to slow down attackers?
 4. What are the three parts of the JSON Web Token?
 
+=== Answers ===
+1. Sessions mean the server is the one doing the encryption(server gets the session id from the client). Sessions are stored via cookies. Uses more memory since you have to save a session for each user vs tokens which are saved on the client side. 
+2. Hashes our password or session.
+3. Bcrypt hashes. Hashing can still be broken, it just slows down the attackers. That's why you have the option to hash a certain number of times. It's to the power of 2 each time, so it's exponential.
+4. Header, payload, signature. Header has the algorithm being used to hash and the type of token (json). Payload is what comes from the client and would be like the username and password. Signature is the secret and used to unhash the payload.
+
 ## Project Description - User Management System - Jokes On YoU!
 
 - What we have here is a wise-guy application. _Dad jokes_ are all the rage these days.
