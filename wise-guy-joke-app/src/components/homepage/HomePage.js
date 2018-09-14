@@ -27,9 +27,9 @@ class HomePage extends Component {
   render() {
     return (
       <Fragment>
-        <ul style={{ margin: "1rem 0" }}>
+        <div style={{ margin: "1rem 0" }}>
           {this.state.jokes.map(joke => (
-            <li
+            <div
               key={joke.id}
               style={{
                 fontWeight: "bold",
@@ -37,12 +37,21 @@ class HomePage extends Component {
                 margin: ".5rem 0",
               }}
             >
-              {joke.setup}
-              ...
-              {joke.punchline}
-            </li>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                {joke.setup}
+                <span>...</span>
+              </div>
+
+              <div>{joke.punchline}</div>
+            </div>
           ))}
-        </ul>
+        </div>
         <button
           style={{ background: "navy", color: "white" }}
           onClick={this.signoutHandler}
