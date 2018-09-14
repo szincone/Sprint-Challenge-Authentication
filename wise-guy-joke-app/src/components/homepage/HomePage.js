@@ -5,6 +5,8 @@ import axios from "axios";
 class HomePage extends Component {
   state = {
     jokes: [],
+    togglePunchline: false,
+    hiddenVar: "none",
   };
   componentDidMount() {
     const token = localStorage.getItem("jwt");
@@ -24,7 +26,24 @@ class HomePage extends Component {
     localStorage.removeItem("jwt");
     this.props.history.push("/");
   };
+  togglePunchline = () => {
+    if (this.state.hiddenVar === "flex") {
+      this.setState({ hiddenVar: "none" });
+    } else {
+      this.setState({ hiddenVar: "flex" });
+    }
+    if (!this.state.togglePunchline) {
+      this.setState({
+        togglePunchline: !this.state.togglePunchline,
+      });
+    } else {
+      this.setState({
+        togglePunchline: this.state.togglePunchline,
+      });
+    }
+  };
   render() {
+    console.log("WORKING", this.state.hiddenVar);
     return (
       <Fragment>
         <div style={{ margin: "1rem 0" }}>
@@ -35,6 +54,7 @@ class HomePage extends Component {
                 fontWeight: "bold",
                 fontSize: "2rem",
                 margin: ".5rem 0",
+                cursor: "pointer",
               }}
             >
               <div
@@ -42,13 +62,24 @@ class HomePage extends Component {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-evenly",
+                  background: "white",
+                  color: "navy",
                 }}
+                onClick={this.togglePunchline}
               >
                 {joke.setup}
                 <span>...</span>
               </div>
 
-              <div>{joke.punchline}</div>
+              <div
+                style={{
+                  display: this.state.hiddenVar,
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                {joke.punchline}
+              </div>
             </div>
           ))}
         </div>
