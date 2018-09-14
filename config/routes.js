@@ -26,14 +26,35 @@ function register(req, res) {
           res.status(201).json({ id: user.id, token });
         })
         .catch(err => {
-          err.code = 500;
-          next(err);
+          res
+            .status(500)
+            .json({ errMessage: "There was an error while registering" });
         });
     });
 }
 
 function login(req, res) {
   // implement user login
+  const { username } = req.body;
+  const { password } = req.body;
+  db("users")
+    .where({ username })
+    .first()
+    .then(user => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        const token = generateToken(user);
+        res.status(200).json({ token });
+      } else {
+        res.status(401).json({
+          message: "You shall not pass!",
+        });
+      }
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ errMessage: "There was an error while registering" });
+    });
 }
 
 function getJokes(req, res) {
